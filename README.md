@@ -29,9 +29,9 @@ npm start
 ## Exercice 2 : Hooks Personnalisés
 
 ### Solution
-- `useDebounce` : utilise `useEffect` + `setTimeout` pour retarder la mise à jour d'une valeur de 500ms. Annule le timer avec `clearTimeout` si la valeur change avant la fin du délai. Évite des requêtes API à chaque frappe.
+- `useDebounce` : utilise `useEffect` + `setTimeout` pour retarder la mise à jour d'une valeur de 500ms. Annule le timer avec `clearTimeout` si la valeur change avant la fin du délai.
 - `useLocalStorage` : initialise l'état depuis `localStorage` via une fonction lazy dans `useState`. La fonction `setValue` met à jour à la fois l'état React et `localStorage`.
-- `useDebounce` est utilisé dans `App.js` pour la recherche debounced. `useLocalStorage` est utilisé dans `ThemeContext` pour persister le thème entre sessions.
+- `useDebounce` utilisé dans `App.js` pour la recherche. `useLocalStorage` utilisé dans `ThemeContext` pour persister le thème.
 
 ### Captures d'écran
 ![Recherche avec debounce](./screenshots/search-love.png)
@@ -42,9 +42,9 @@ npm start
 
 ### Solution
 - `ThemeContext` : créé avec `createContext()`. Le `ThemeProvider` utilise `useLocalStorage` pour persister le thème et expose `theme` + `toggleTheme` via le context.
-- `ThemeToggle` : consomme le context via `useTheme()` et affiche 🌙 ou ☀️ selon le thème actuel.
-- `useCallback` utilisé sur `toggleTheme` et `handleTagClick` pour stabiliser les références de fonctions.
-- `useMemo` utilisé sur la valeur du context pour éviter des re-renders inutiles des consumers.
+- `ThemeToggle` : consomme le context via `useTheme()` et affiche mode sombre ou clair selon le thème actuel.
+- `useCallback` utilisé sur `toggleTheme` et `handleTagClick` pour stabiliser les références.
+- `useMemo` utilisé sur la valeur du context pour éviter des re-renders inutiles.
 
 ### Captures d'écran
 ![Mode clair](./screenshots/posts-list.png)
@@ -55,13 +55,13 @@ npm start
 ## Exercice 4 : Fonctionnalités Avancées
 
 ### Solution
-- `useIntersectionObserver` : utilise l'API native `IntersectionObserver` pour détecter quand un élément sentinel (div invisible) entre dans le viewport. Quand visible → `setSkip(prev => prev + LIMIT)` pour charger plus de posts automatiquement.
-- `PostDetails` : modal qui fetch les détails complets du post via `/posts/{id}` au clic. Fermeture en cliquant sur l'overlay ou le bouton ✕.
-- Filtrage par tags : clic sur un tag appelle `handleTagClick` qui met à jour `activeTag`. L'URL utilisée devient `/posts/tag/{tag}`.
+- `useIntersectionObserver` : utilise l'API native `IntersectionObserver` pour détecter quand un élément sentinel entre dans le viewport. Quand visible, charge plus de posts automatiquement.
+- `PostDetails` : modal qui fetch les détails complets du post via `/posts/{id}` au clic. Fermeture en cliquant sur l'overlay ou le bouton X.
+- Filtrage par tags : clic sur un tag met à jour `activeTag`. L'URL devient `/posts/tag/{tag}`.
 
 ### Captures d'écran
 ![Modal détails d'un post](./screenshots/post-details.png)
-![Filtre par tag history](./screenshots/tag-filter.png)
+![Filtre par tag](./screenshots/tag-filter.png)
 
 ---
 
